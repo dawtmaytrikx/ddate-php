@@ -19,16 +19,18 @@ function ddate() {
     $sholydays = array('Chaoflux', 'Discoflux', 'Confuflux', 'Bureflux', 'Afflux');
     
     $day = date('z');
+    
+    if (date('L')) {
+        if ($day == 59) { $sttibsday = 1; }
+        if ($day > 59) { $day--; }
+    }
+    
     $discmonth = $discmonths[floor($day / 73)];
     $discday = $discdays[$day % 5];
     $discnum = $day % 73 + 1;
     $ordiscnum = ordinal_suffix($discnum);
     $discyear = date('Y') + 1166;
     
-    if (date('L')) {
-        if ($day == 59) { $sttibsday = 1; }
-        if ($day > 59) { $day--; }
-    }
     if ($discnum == 5) { $holyday = $aholydays[floor($day / 73)]; }
     if ($discnum == 50) { $holyday = $sholydays[floor($day / 73)]; }
     
